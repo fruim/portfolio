@@ -1,0 +1,153 @@
+
+
+    
+    .carousel-title{
+      margin-top: 50px;
+      font-size: 24px;
+      text-align: center;
+    }
+    .carousel-description{
+      font-size: 18px;
+      text-align: center;
+    }
+    .caption{
+      margin: auto;
+      text-align: center;
+      font-weight: normal;
+      margin-top: 1em;
+      font-size: 18px;
+      max-width: 60%;
+    }
+    /* Container holding the carousel with edge fading mask */
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      overflow: hidden;
+      padding: 46px 0;
+      margin: auto;
+
+      /* CSS Mask fading the left and right 15% edges */
+      -webkit-mask-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 1) 15%,
+        rgba(0, 0, 0, 1) 85%,
+        rgba(0, 0, 0, 0) 100%
+      );
+      mask-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 1) 15%,
+        rgba(0, 0, 0, 1) 85%,
+        rgba(0, 0, 0, 0) 100%
+      );
+    }
+
+    /* Track moving the slides */
+    .carousel-track {
+      display: flex;
+      align-items: center;
+      transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+      cursor: grab;
+      user-select: none;
+    }
+
+    .carousel-track:active {
+      cursor: grabbing;
+    }
+
+    /* Individual Slide Styles */
+    .slide {
+      flex: 0 0 60%; /* Desktop: width 60% shows ~20% of previous/next slides */
+      height: 30vw;
+      margin: 0 12px;
+      
+      
+      /* Background Image Settings */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      
+      /* Non-active slide appearance */
+      opacity: 0.4;
+      transform: scale(0.9);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    /* Active centered slide appearance */
+    .slide.active {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+
+    /* Overlay content inside div (optional) */
+    .slide-content {
+      width: 100%;
+      height: 100%;
+      border-radius: 0px;
+      display: flex;
+      align-items: flex-end;
+      padding: 24px;
+      color: #ffffff;
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    /* Responsive adjustments for Mobile & Tablet */
+    @media (max-width: 768px) {
+      .slide {
+        flex: 0 0 75%; /* Tablet width */
+        height: 230px;
+        margin: 0 8px;
+      }
+    }
+
+    @media (max-width: 768px) and (orientation: landscape) {
+      .slide {
+        flex: 0 0 75%; /* Tablet width */
+        height: 320px;
+        margin: 0 8px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .slide {
+        flex: 0 0 80%; /* Mobile width - leaves ~10% preview on each side */
+        height: 192px;
+        margin: 0 6px;
+      }
+
+      .slide-content {
+        font-size: 1rem;
+        padding: 16px;
+      }
+    }
+
+    /* Navigation Controls */
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      color: white;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      z-index: 10;
+      transition: background 0.2s;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .nav-btn:hover {
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    .nav-btn.prev { left: 15px; }
+    .nav-btn.next { right: 15px; }

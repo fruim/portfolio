@@ -1,0 +1,142 @@
+@font-face {
+  font-family: 'Pixel';
+  src: url('../assets/fonts/dogicapixel.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.contact-desc {
+  color: #94a3b8;
+  font-family: 'Courier New', Courier, monospace; /* Monospaced font ensures clean typing alignment */
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.cursor {
+  display: inline-block;
+  margin-left: 2px;
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.typing-text::after {
+  content: "";
+  font-family: 'Pixel';
+  font-size: 0.9rem;
+  white-space: pre-line; /* Allows CSS newline characters to wrap */
+  animation: typeSequence 10s infinite;
+}
+
+@keyframes typeSequence {
+  /* Step 1: Type up to "together?" */
+  0%    { content: ""; }
+  1%    { content: "I"; }
+  2%    { content: "In"; }
+  3%    { content: "Int"; }
+  4%    { content: "Inte"; }
+  5%    { content: "Inter"; }
+  6%    { content: "Intere"; }
+  7%    { content: "Interes"; }
+  8%    { content: "Interest"; }
+  9%    { content: "Intereste"; }
+  10%   { content: "Interested"; }
+  11%   { content: "Interested "; }
+  12%   { content: "Interested i"; }
+  13%   { content: "Interested in"; }
+  14%   { content: "Interested in "; }
+  15%   { content: "Interested in w"; }
+  16%   { content: "Interested in wo"; }
+  17%   { content: "Interested in wor"; }
+  18%   { content: "Interested in work"; }
+  19%   { content: "Interested in worki"; }
+  20%   { content: "Interested in workin"; }
+  21%   { content: "Interested in working"; }
+  22%   { content: "Interested in working "; }
+  23%   { content: "Interested in working t"; }
+  24%   { content: "Interested in working to"; }
+  25%   { content: "Interested in working tog"; }
+  26%   { content: "Interested in working toge"; }
+  27%   { content: "Interested in working toget"; }
+  28%   { content: "Interested in working togeth"; }
+  29%   { content: "Interested in working togethe"; }
+  30%   { content: "Interested in working together"; }
+  31%   { content: "Interested in working together?\A"; }
+
+  /* Step 2: Pause at "together?" */
+  32%, 40% { content: "Interested in working together?\A"; }
+
+  /* Step 3: Type an error (" Feel fe") */
+  41%   { content: "Interested in working together? \A "; }
+  42%   { content: "Interested in working together? \A F"; }
+  43%   { content: "Interested in working together? \A Fe"; }
+  44%   { content: "Interested in working together? \A Fee"; }
+  45%   { content: "Interested in working together? \A Feel"; }
+  46%   { content: "Interested in working together? \A Feel "; }
+  47%   { content: "Interested in working together? \A Feel f"; }
+  48%   { content: "Interested in working together? \A Feel fe"; } /* Error made here */
+
+  /* Step 4: Pause briefly at the typo */
+  49%, 52% { content: "Interested in working together? \A Feel fe"; }
+
+  /* Step 5: Backspace the typo */
+  53%   { content: "Interested in working together? \A Feel f"; }
+  54%   { content: "Interested in working together? \A Feel "; }
+  55%   { content: "Interested in working together? \A Feel"; }
+
+  /* Step 6: Correct the typo and complete the line */
+  56%   { content: "Interested in working together? \A Feel "; }
+  57%   { content: "Interested in working together? \A Feel f"; }
+  58%   { content: "Interested in working together? \A Feel fr"; }
+  59%   { content: "Interested in working together? \A Feel fre"; }
+  60%   { content: "Interested in working together? \A Feel free"; }
+  61%   { content: "Interested in working together? \A Feel free "; }
+  62%   { content: "Interested in working together? \A Feel free t"; }
+  63%   { content: "Interested in working together? \A Feel free to"; }
+  64%   { content: "Interested in working together? \A Feel free to "; }
+  65%   { content: "Interested in working together? \A Feel free to c"; }
+  66%   { content: "Interested in working together? \A Feel free to co"; }
+  67%   { content: "Interested in working together? \A Feel free to con"; }
+  68%   { content: "Interested in working together? \A Feel free to cont"; }
+  69%   { content: "Interested in working together? \A Feel free to conta"; }
+  70%   { content: "Interested in working together? \A Feel free to contac"; }
+  71%   { content: "Interested in working together? \A Feel free to contact"; }
+  72%   { content: "Interested in working together? \A Feel free to contact "; }
+  73%   { content: "Interested in working together? \A Feel free to contact m"; }
+  74%   { content: "Interested in working together? \A Feel free to contact me"; }
+  75%   { content: "Interested in working together? \A Feel free to contact me!"; }
+  76%   { content: "Interested in working together? \A Feel free to contact me✨!"; }
+
+  /* Step 7: Hold final text before restarting loop */
+  77%, 95% { content: "Interested in working together?\A Feel free to contact me✨!"; }
+  100%     { content: ""; }
+}
+  /* Mobile Responsive Adjustments */
+  @media (max-width: 900px) {
+    .contact-desc {
+      font-size: 0.5rem !important;
+    }
+    .typing-text::after {
+      content: "";
+      font-family: 'Pixel';
+      font-size: 0.7rem;
+      animation: typeSequence 10s infinite;
+    }
+    .contact {
+        font-size: 0.9rem;
+    }
+    .contact h2{
+        font-size: 1.5rem;
+    }
+    .contact-desc {
+        margin-bottom: 3rem !important;
+    }
+    .contact-info-2 p{
+      margin-bottom: 0.5rem;
+    }
+  }
