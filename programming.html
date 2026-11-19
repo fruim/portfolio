@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Portfolio | DevPortfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Base Themes matched to your image */
+        :root {
+            --bg-color: #0b132b;
+            --card-bg: #1c2541;
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+            --accent-color: #198cff;
+            --accent-hover: #0077b6;
+            --border-glow: rgba(0, 180, 216, 0.4);
+            --modal-bg: rgba(11, 19, 43, 0.85);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        /* Header Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background-color: rgba(11, 19, 43, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s;
+        }
+
+        .back-btn:hover {
+            color: var(--accent-color);
+        }
+
+        /* Project Hero Section */
+        .hero {
+            text-align: center;
+            max-width: 800px;
+            margin: 60px auto 40px auto;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .divider {
+            width: 50px;
+            height: 4px;
+            background-color: var(--accent-color);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+
+        /* Gallery Grid */
+        .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 30px;
+        }
+
+        /* Enhanced Art Card Item */
+        .art-card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        /* Interactive Card Wrapper */
+        .art-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 280px; 
+            overflow: hidden;
+            background-color: #2a3454;
+        }
+
+        .art-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        /* Dynamic Overlay on Image Hover */
+        .art-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(11, 19, 43, 0.2), rgba(11, 19, 43, 0.8));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .view-art-btn {
+            background-color: var(--text-main);
+            color: var(--bg-color);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transform: translateY(10px);
+            transition: transform 0.3s ease, background-color 0.3s;
+        }
+
+        /* Card Hover Effects triggers */
+        .art-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 4px 10px rgba(0, 180, 216, 0.25);
+            border-color: rgba(0, 180, 216, 0.3);
+        }
+
+        .art-card:hover .art-image {
+            transform: scale(1.05);
+        }
+
+        .art-card:hover .art-overlay {
+            opacity: 1;
+        }
+
+        .art-card:hover .view-art-btn {
+            transform: translateY(0);
+        }
+
+        /* Info Section Adjustments */
+        .art-info {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        /* Context Badge for Employers */
+        .context-badge {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-color);
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .art-info h3 {
+            font-size: 1.35rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        .art-info p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            flex-grow: 1; 
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: auto;
+        }
+
+        .tag {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: #e2e8f0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .art-card:hover .tag {
+            border-color: rgba(0, 180, 216, 0.3);
+            background-color: rgba(0, 180, 216, 0.05);
+            color: var(--accent-color);
+        }
+
+        /* Modal Configurations */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--modal-bg);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background-color: rgba(0, 0, 0, 0);
+            width: 100%;
+            max-width: 850px;
+            max-height: 95vh;
+            border-radius: 20px;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+            overflow: hidden;
+            transform: scale(0.95);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0);
+            border: none;
+            color: var(--text-main);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 27px;
+            font-weight: 300;
+            transition: all 0.2s;
+            z-index: 10;
+        }
+
+        .modal-close-btn:hover {
+            color: var(--accent-color);
+        }
+
+        /* Carousel Component Layout */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 450px;
+            background-color: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .modal-hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Carousel Arrow Control Knobs */
+        .carousel-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(11, 19, 43, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-main);
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.2s ease;
+            z-index: 5;
+            user-select: none;
+        }
+
+        .carousel-nav-btn:hover {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+
+        .prev-btn { left: 20px; }
+        .next-btn { right: 20px; }
+
+        /* Navigation Pagination Dots */
+        .carousel-dots {
+            position: absolute;
+            bottom: 20px;
+            display: flex;
+            gap: 8px;
+            z-index: 5;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background-color: var(--accent-color);
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        .modal-body {
+            padding: 40px;
+            padding-top: 10px;
+        }
+
+        .modal-body h2 {
+            font-size: 2rem;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .modal-body p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .art-image-wrapper { height: 240px; }
+            .carousel-container { height: 300px; }
+            .modal-body { padding: 25px; }
+            .modal-body h2 { font-size: 1.6rem; }
+            .carousel-nav-btn { width: 38px; height: 38px; font-size: 14px; }
+            .prev-btn { left: 10px; }
+            .next-btn { right: 10px; }
+
+            .hero h1 {font-size: 1.2rem}
+            .hero p {font-size: 0.9rem} 
+            .back-btn {font-size: 0.9rem !important}
+            #modal-context {font-size: 0.7rem}
+            #modal-title {font-size: 0.9rem}
+            #modal-description {font-size: 0.8rem}
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Dev<span>Portfolio</span></div>
+        <a href="index.html#projects" class="back-btn">← Back</a>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>System Development</h1>
+            <div class="divider"></div>
+            <p>A collection of software systems and capstone projects</p>
+        </section>
+
+        <section class="gallery-container">
+            <div class="gallery-grid">
+                
+                <div class="art-card" onclick="openModal(1)">
+                    <div class="art-image-wrapper">
+                        <img src="assets/Programming/Health-i/1.png" alt="Cyberpunk Branding" class="art-image">
+                        <div class="art-overlay">
+                            <span class="view-art-btn">View Details</span>
+                        </div>
+                    </div>
+                    <div class="art-info">
+                        <div class="context-badge">2024</div>
+                        <h3>Health-i</h3>
+                        <p>Web & Mobile Base System For CVD Risk Assessment and Management System </p>
+                        <div class="tags">
+                            <span class="tag">Capstone Project</span>
+                            <span class="tag">Flutter</span>
+                            <span class="tag">CVD</span>
+                            <span class="tag">GIS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="art-card" onclick="openModal(2)">
+                    <div class="art-image-wrapper">
+                        <img src="assets/Programming/Etrms/1.png" alt="Minimalist Poster" class="art-image">
+                        <div class="art-overlay">
+                            <span class="view-art-btn">View Details</span>
+                        </div>
+                    </div>
+                    <div class="art-info">
+                        <div class="context-badge">2024</div>
+                        <h3>ETRMS</h3>
+                        <p>Entrance Test Result Management System for Davao del Norte State College</p>
+                        <div class="tags">
+                            <span class="tag">System</span>
+                            <span class="tag">OJT</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--<div class="art-card" onclick="openModal(3)">
+                    <div class="art-image-wrapper">
+                        <img src="https://via.placeholder.com/450x350/2a3454/ffffff?text=Artwork+3" alt="Mobile UI Kit" class="art-image">
+                        <div class="art-overlay">
+                            <span class="view-art-btn">View Details</span>
+                        </div>
+                    </div>
+                    <div class="art-info">
+                        <div class="context-badge">UI Art & Assets</div>
+                        <h3>Weather Application UI Art</h3>
+                        <p>Custom atmospheric weather assets and backdrop layouts tailored for a minimalist mobile layout.</p>
+                        <div class="tags">
+                            <span class="tag">Figma</span>
+                            <span class="tag">UI/UX</span>
+                            <span class="tag">Digital Art</span>
+                        </div>
+                    </div>
+                </div>-->
+
+            </div>
+        </section>
+    </main>
+
+    <div id="portfolio-modal" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close-btn" onclick="closeModal(null)">&times;</button>
+            
+            <div class="carousel-container">
+                <button class="carousel-nav-btn prev-btn" onclick="navigateCarousel(-1)">&#10094;</button>
+                <img id="modal-display-img" src="" alt="Active Presentation Slide" class="modal-hero-img">
+                <button class="carousel-nav-btn next-btn" onclick="navigateCarousel(1)">&#10095;</button>
+                
+                <div id="modal-dots-container" class="carousel-dots"></div>
+            </div>
+
+            <div class="modal-body">
+                <div id="modal-context" class="context-badge"></div>
+                <h2 id="modal-title"></h2>
+                <p id="modal-description"></p>
+                <div id="modal-tags" class="tags"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Array holding your individual artwork sequences/slides
+        const projectData = {
+            1: {
+                context: "May 2024",
+                title: "Health-i",
+                description: "This project is a comprehensive Web & Mobile-Based System for CVD Risk Assessment and Management Tool. It serves as both an analytical and management tool, empowering healthcare providers to assess cardiovascular disease risks among community constituents and effectively manage public health data.",
+                images: [
+                    "assets/Programming/Health-i/1.png",
+                    "assets/Programming/Health-i/2.png",
+                    "assets/Programming/Health-i/3.png",
+                    "assets/Programming/Health-i/4.png",
+                    "assets/Programming/Health-i/5.png",
+                    "assets/Programming/Health-i/6.png",
+                    "assets/Programming/Health-i/7.jpg",
+                ],
+                tags: ["Capstone Project", "Flutter", "CVD", "GIS"]
+            },
+            2: {
+                context: "June 2024",
+                title: "ETRMS",
+                description: "Entrance Test Result Management System (ETRMS) for Davao del Norte State College, A dedicated management system designed to process, store, and analyze student entrance examination results, streamlining the admissions screening workflow for the college.",
+                images: [
+                     "assets/Programming/Etrms/1.png",
+                     "assets/Programming/Etrms/2.png",
+                     "assets/Programming/Etrms/3.png",
+                     "assets/Programming/Etrms/4.png"
+                ],
+                tags: ["System", "OJT"]
+            },
+            3: {
+                context: "UI Art & Assets",
+                title: "Weather Application UI Art",
+                description: "Cycle through structural UI design workflow variants. Displays active UI application art modules from simple interface component states up to high-fidelity weather canvas presentation screens.",
+                images: [
+                    "https://via.placeholder.com/850x450/2a3454/ffffff?text=1.+High-Fidelity+Mobile+UI",
+                    "https://via.placeholder.com/850x450/1c2541/ffffff?text=2.+Component+Design+System+Kit",
+                    "https://via.placeholder.com/850x450/0b132b/ffffff?text=3.+Atmospheric+Iconography+Pass"
+                ],
+                tags: ["Figma", "UI/UX", "Digital Art"]
+            }
+        };
+
+        let currentProjectId = null;
+        let currentImageIndex = 0;
+
+        function openModal(id) {
+            const data = projectData[id];
+            if (!data) return;
+
+            currentProjectId = id;
+            currentImageIndex = 0;
+
+            // Inject regular content
+            document.getElementById('modal-context').innerText = data.context;
+            document.getElementById('modal-title').innerText = data.title;
+            document.getElementById('modal-description').innerText = data.description;
+
+            // Generate structural tags dynamically
+            const tagsContainer = document.getElementById('modal-tags');
+            tagsContainer.innerHTML = '';
+            data.tags.forEach(t => {
+                const span = document.createElement('span');
+                span.className = 'tag';
+                span.innerText = t;
+                tagsContainer.appendChild(span);
+            });
+
+            // Generate carousel indicators/dots
+            const dotsContainer = document.getElementById('modal-dots-container');
+            dotsContainer.innerHTML = '';
+            data.images.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.className = `dot ${index === 0 ? 'active' : ''}`;
+                dot.onclick = () => setSlide(index);
+                dotsContainer.appendChild(dot);
+            });
+
+            // Set initial image and expose screen
+            updateCarouselImage();
+            document.getElementById('portfolio-modal').classList.add('active');
+            document.body.style.overflow = 'hidden'; // Lock root scroll when active
+        }
+
+        function closeModal(event) {
+            // Allow close action if closed directly via X button, or click lands directly on outer dark container
+            if (!event || event.target === document.getElementById('portfolio-modal')) {
+                document.getElementById('portfolio-modal').classList.remove('active');
+                document.body.style.overflow = ''; // Restore root scrolling
+            }
+        }
+
+        function navigateCarousel(direction) {
+            if (!currentProjectId) return;
+            const images = projectData[currentProjectId].images;
+            
+            currentImageIndex += direction;
+            
+            // Loop controls around arrays boundaries gracefully
+            if (currentImageIndex >= images.length) currentImageIndex = 0;
+            if (currentImageIndex < 0) currentImageIndex = images.length - 1;
+
+            updateCarouselImage();
+        }
+
+        function setSlide(index) {
+            currentImageIndex = index;
+            updateCarouselImage();
+        }
+
+        function updateCarouselImage() {
+            const images = projectData[currentProjectId].images;
+            const imgElement = document.getElementById('modal-display-img');
+            
+            // Fast fade visual transition asset swaps
+            imgElement.style.opacity = '0.4';
+            setTimeout(() => {
+                imgElement.src = images[currentImageIndex];
+                imgElement.style.opacity = '1';
+            }, 100);
+
+            // Synchronize active indicators
+            const dots = document.querySelectorAll('#modal-dots-container .dot');
+            dots.forEach((dot, idx) => {
+                if (idx === currentImageIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        // Clean user navigation helper: Escape Key closes opened layouts naturally
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal(null);
+        });
+    </script>
+</body>
+</html>
