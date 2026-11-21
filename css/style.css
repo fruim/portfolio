@@ -944,7 +944,7 @@ footer {
         gap: 0rem;
     }
     .contact-profile{
-        display: flex;
+        display: block;
     }
     .carousel-box {
         min-width: 135px;
