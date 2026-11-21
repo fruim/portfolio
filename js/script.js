@@ -16,6 +16,30 @@ mobileMenu.addEventListener('click', () => {
     }
 });
 
+//Hide Navbar when scrolling
+const navbar = document.querySelector('.navbar');
+let lastScrollY = window.scrollY;
+
+window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+
+    // Prevent hiding at the very top (fixes iOS/macOS bounce scroll issues)
+    if (currentScrollY <= 0) {
+        navbar.classList.remove('navbar--hidden');
+        return;
+    }
+
+    if (currentScrollY > lastScrollY) {
+        // Scrolling down -> hide navbar
+        navbar.classList.add('navbar--hidden');
+    } else {
+        // Scrolling up -> show navbar
+        navbar.classList.remove('navbar--hidden');
+    }
+
+    lastScrollY = currentScrollY;
+}, { passive: true });
+
 // Close mobile menu when a link is clicked
 const navItems = document.querySelectorAll('.nav-links a');
 navItems.forEach(item => {
