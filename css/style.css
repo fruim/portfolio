@@ -543,6 +543,18 @@ h2::after {
 }
 
 /* Contact & Footer */
+.contact_profile {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%; 
+      background-image: url('../assets/contact_img.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      margin: auto;
+      margin-bottom: 10%;
+      display: none;
+}
 .contact {
     text-align: center;
 }
@@ -717,12 +729,17 @@ footer {
         width: 100px;
         margin-left: -10% !important;
         margin: auto;
+        display: none;
     }
     .about{
         padding-top: 0px !important;
     }
+    .contact_profile{
+        display:block;
+    }
     .about-text{
         margin-top: 0px;
+        padding-top: 5%;
     }
     .published{
         text-align: center;
@@ -895,6 +912,10 @@ footer {
         height: 90vh;
         width: 70%;
         margin-left: -5% !important;
+        display: none;
+    }
+    .about-text{
+        padding-top: 5%;
     }
     .hero {
         background-image: 
@@ -922,7 +943,9 @@ footer {
         justify-content: left;
         gap: 0rem;
     }
-
+    .contact_profile{
+        display:block;
+    }
     .carousel-box {
         min-width: 135px;
         text-align: left;
