@@ -543,7 +543,7 @@ h2::after {
 }
 
 /* Contact & Footer */
-.contact_profile {
+.contact-profile {
       width: 180px;
       height: 180px;
       border-radius: 50%; 
@@ -734,8 +734,8 @@ footer {
     .about{
         padding-top: 0px !important;
     }
-    .contact_profile{
-        display:block;
+    .contact-profile{
+        display: flex;
     }
     .about-text{
         margin-top: 0px;
@@ -943,8 +943,8 @@ footer {
         justify-content: left;
         gap: 0rem;
     }
-    .contact_profile{
-        display:block;
+    .contact-profile{
+        display: flex;
     }
     .carousel-box {
         min-width: 135px;
