@@ -661,24 +661,41 @@ footer {
     .about-title {
         text-align: center;
     }
-
     .hero {
         background-image: 
         linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), 
-        url('../assets/bg_image.jpg') !important;
-        background-position: 65% center;
-        padding: 0 5% 10%;
-        padding-top: 18%;
-
-
+        url('../assets/bg_image_mobile.jpg') !important;
+        
+        background-position: 50% center;
+        background-repeat: no-repeat;
+        padding: 0 5% 75%;
+        padding-top: 85%;
     }
 
     .hero-content h1 {
         font-size: 1.6rem;
         color: #828282 !important;
         margin-bottom: 0px;
+        text-align: center;
+    }
+    .hero-content p {
+        text-align: center;
+    }
+    .carousel-text {
+        align-items: center;
+        justify-content: center;
+        gap: 0rem;
     }
 
+    .carousel-box {
+        min-width: 135px;
+        text-align: left;
+    }
+    .btn{
+        scale: 0.7 !important;
+        margin-left: 30%;
+        margin-top: 40vh;
+    }
     .highlight {
         color: #737373;
         font-family: 'Sketch', sans-serif;
@@ -689,9 +706,6 @@ footer {
     .carousel-text {
         font-size: 1.5rem !important;
         margin-bottom: 0.6rem !important;
-    }
-    .btn{
-        scale: 0.7 !important;
     }
     .intro{
         color: #6A6A6A !important;
@@ -876,22 +890,46 @@ footer {
 }
 @media (max-width: 900px) and (orientation: landscape) {
     .about-image{
+        scale: 1 !important;
+        width: 100vw !important;
         height: 90vh;
         width: 70%;
+        margin-left: -5% !important;
     }
-    .hero-content h1 {
-        font-size: 2.5rem;
+    .hero {
+        background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.4)), 
+        url('../assets/bg_image.jpg') !important;
+        background-position: 100% center;
+        background-repeat: no-repeat;
+        padding: 0 5% 75%;
+        padding-top: 35%;
+        background-size: auto 100%;
+        padding-bottom: 25%;
     }
 
     .hero-content h1 {
         font-size: 1.6rem;
         color: #828282 !important;
         margin-bottom: 0px;
+        text-align: left;
     }
-    .about-image{
-        scale: 1 !important;
-        width: 100vw !important;
-        width: 100px;
-        margin-left: -5% !important;
+    .hero-content p {
+        text-align: left;
+    }
+    .carousel-text {
+        align-items: left;
+        justify-content: left;
+        gap: 0rem;
+    }
+
+    .carousel-box {
+        min-width: 135px;
+        text-align: left;
+    }
+    .btn{
+        scale: 0.7 !important;
+        margin-left: -3%;
+        margin-top: -1vh;
     }
 }
